@@ -20,7 +20,7 @@ jobs:
       - run: cat sarasa-mono-tc-regular.ttx
       - run: cat sarasa-mono-tc-regular-nerd-font.ttx
       - run: |
-          width="$(( $(grep xAvgCharWidth sarasa-mono-tc-regular.ttx | cut -d '"' -f 2) / 2 ))"
+          width="$(( $(grep xAvgCharWidth sarasa-mono-tc-regular-nerd-font.ttx | cut -d '"' -f 2) / 2 ))"
           echo $width
           sed -i "s/xAvgCharWidth\ value=\"[0-9]\+\"/xAvgCharWidth\ value=\"${width}\"/g" sarasa-mono-tc-regular-nerd-font.ttx
       - run: cat sarasa-mono-tc-regular-nerd-font.ttx
