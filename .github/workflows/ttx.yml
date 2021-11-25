@@ -14,9 +14,8 @@ jobs:
           python-version: '3.x'
       - run: ls -al
       - run: pip install fonttools
-      - run: ttx
-      - run: python /opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/fontTools/ttx.py -t "OS/2" sarasa-mono-tc-regular.ttf
-      - run: python /opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/fontTools/ttx.py -t "OS/2" sarasa-mono-tc-regular-nerd-font.ttf
+      - run: ttx -t "OS/2" sarasa-mono-tc-regular.ttf
+      - run: ttx -t "OS/2" sarasa-mono-tc-regular-nerd-font.ttf
       - run: ls -al
       - run: cat sarasa-mono-tc-regular.ttx
       - run: cat sarasa-mono-tc-regular-nerd-font.ttx
