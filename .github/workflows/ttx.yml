@@ -22,3 +22,8 @@ jobs:
       - run: cat sarasa-mono-tc-regular-nerd-font.ttx
       - run: python /opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/fontTools/ttx.py -m sarasa-mono-tc-regular-nerd-font.ttf sarasa-mono-tc-regular-nerd-font.ttx
       - run: ls -al
+      - run: rm sarasa-mono-tc-regular-nerd-font.ttf
+      - uses: actions/upload-artifact@v2
+        with:
+          name: after ttx
+          path: '*.ttf'
