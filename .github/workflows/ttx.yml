@@ -32,7 +32,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: after ttx
-          path: '*.ttf'
+          path: 'sarasa-mono-tc-regular-nerd-font.ttf'
 
       - name: build hdmx
         run: python build-hdmx-for-sarasa.py sarasa-mono-tc-regular-nerd-font.ttf
