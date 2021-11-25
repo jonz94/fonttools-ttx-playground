@@ -13,6 +13,7 @@ jobs:
         with:
           python-version: '3.x'
       - run: ls -al
+      - run: mkdir -p ${HOME}/.local/bin
       - run: pip install fonttools
       - run: env | sort
       - run: ls -al ${HOME}/.local/bin
