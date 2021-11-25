@@ -1,6 +1,7 @@
 name: ttx
 
 on:
+  push:
   # allow manually trigger
   workflow_dispatch:
 

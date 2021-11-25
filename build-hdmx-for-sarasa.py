@@ -10,31 +10,39 @@ import math
 
 from fontTools.ttLib import TTFont, newTable
 
-headFlagInstructionsMayAlterAdvanceWidth = 0x0010
-sarasaHintPpemMin = 11
-sarasaHintPpemMax = 48
 
-filename = sys.argv[1]
+def main():
+    headFlagInstructionsMayAlterAdvanceWidth = 0x0010
+    sarasaHintPpemMin = 11
+    sarasaHintPpemMax = 48
 
-font = TTFont(filename, recalcBBoxes=False)
+    filename = sys.argv[1]
 
-originFontHead = font["head"]
-originFontHmtx = font["hmtx"]
+    font = TTFont(filename, recalcBBoxes=False)
 
-originFontHead.flags |= headFlagInstructionsMayAlterAdvanceWidth
+    originFontHead = font["head"]
+    originFontHmtx = font["hmtx"]
 
-hdmxTable = newTable("hdmx")
-hdmxTable.hdmx = {}
+    originFontHead.flags |= headFlagInstructionsMayAlterAdvanceWidth
 
-# build hdmx table for odd and hinted ppems only.
-for ppem in range(math.floor(sarasaHintPpemMin / 2) * 2 + 1, sarasaHintPpemMax + 1, 2):
-    halfUpm = originFontHead.unitsPerEm / 2
-    halfPpem = math.ceil(ppem / 2)
-    hdmxTable.hdmx[ppem] = {
-        name: math.ceil(width / halfUpm) * halfPpem
-        for name, (width, _) in originFontHmtx.metrics.items()
-    }
+    hdmxTable = newTable("hdmx")
+    hdmxTable.hdmx = {}
 
-font["hdmx"] = hdmxTable
+    # build hdmx table for odd and hinted ppems only.
+    for ppem in range(
+        math.floor(sarasaHintPpemMin / 2) * 2 + 1, sarasaHintPpemMax + 1, 2
+    ):
+        halfUpm = originFontHead.unitsPerEm / 2
+        halfPpem = math.ceil(ppem / 2)
+        hdmxTable.hdmx[ppem] = {
+            name: math.ceil(width / halfUpm) * halfPpem
+            for name, (width, _) in originFontHmtx.metrics.items()
+        }
 
-font.save("hdmx-" + filename)
+    font["hdmx"] = hdmxTable
+
+    font.save("hdmx-" + filename)
+
+
+if __name__ == "__main__":
+    main()
