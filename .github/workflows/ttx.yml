@@ -33,3 +33,7 @@ jobs:
         with:
           name: after ttx
           path: '*.ttf'
+
+      - name: build hdmx
+        run: python build-hdmx-for-sarasa.py sarasa-mono-tc-regular-nerd-font.ttf
+      - run: ls -al
