@@ -21,15 +21,13 @@ jobs:
       - run: cat sarasa-mono-tc-regular.ttx
       - run: cat sarasa-mono-tc-regular-nerd-font.ttx
       - run: |
-          width="$(grep xAvgCharWidth sarasa-mono-tc-regular.ttx | cut -d '"' -f 2)"
+          origin_width="$(grep xAvgCharWidth sarasa-mono-tc-regular.ttx | cut -d '"' -f 2)"
           echo $width
-          sed -i "s/xAvgCharWidth\ value=\"[0-9]\+\"/xAvgCharWidth\ value=\"${width}\"/g" sarasa-mono-tc-regular-nerd-font.ttx
+          sed -i "s/xAvgCharWidth\ value=\"[0-9]\+\"/xAvgCharWidth\ value=\"${origin_width}\"/g" sarasa-mono-tc-regular-nerd-font.ttx
       - run: cat sarasa-mono-tc-regular-nerd-font.ttx
-      - run: python /opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/fontTools/ttx.py -m sarasa-mono-tc-regular-nerd-font.ttf sarasa-mono-tc-regular-nerd-font.ttx
+      - run: mv sarasa-mono-tc-regular-nerd-font.ttf sarasa-mono-tc-regular-nerd-font.origin.ttf
+      - run: ttx -m sarasa-mono-tc-regular-nerd-font.origin.ttf sarasa-mono-tc-regular-nerd-font.ttx -o sarasa-mono-tc-regular-nerd-font.ttf
       - run: ls -al
-      - run: rm sarasa-mono-tc-regular.ttf
-      - run: rm sarasa-mono-tc-regular-nerd-font.ttf
-      - run: mv *.ttf sarasa-mono-tc-regular-nerd-font.ttf
       - uses: actions/upload-artifact@v2
         with:
           name: after ttx
