@@ -37,3 +37,7 @@ jobs:
       - name: build hdmx
         run: python build-hdmx-for-sarasa.py sarasa-mono-tc-regular-nerd-font.ttf
       - run: ls -al
+      - uses: actions/upload-artifact@v2
+        with:
+          name: after hdmx
+          path: 'hdmx-sarasa-mono-tc-regular-nerd-font.ttf'
