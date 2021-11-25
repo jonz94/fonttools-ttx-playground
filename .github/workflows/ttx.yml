@@ -26,7 +26,7 @@ jobs:
           sed -i "s/xAvgCharWidth\ value=\"[0-9]\+\"/xAvgCharWidth\ value=\"${origin_width}\"/g" sarasa-mono-tc-regular-nerd-font.ttx
       - run: cat sarasa-mono-tc-regular-nerd-font.ttx
       - run: mv sarasa-mono-tc-regular-nerd-font.ttf sarasa-mono-tc-regular-nerd-font.origin.ttf
-      - run: ttx -m sarasa-mono-tc-regular-nerd-font.origin.ttf sarasa-mono-tc-regular-nerd-font.ttx -o sarasa-mono-tc-regular-nerd-font.ttf
+      - run: ttx -o sarasa-mono-tc-regular-nerd-font.ttf -m sarasa-mono-tc-regular-nerd-font.origin.ttf sarasa-mono-tc-regular-nerd-font.ttx
       - run: ls -al
       - uses: actions/upload-artifact@v2
         with:
