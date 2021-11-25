@@ -12,9 +12,10 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: '3.x'
+      - run: ls -al
       - run: pip install fonttools
       - run: env | sort
       - run: ls -al ${PIPX_BIN_DIR}
-      - run: ls -al ~/.local/bin
+      - run: python test.py
       - run: python /opt/hostedtoolcache/Python/3.10.0/x64/lib/python3.10/site-packages/fontTools/ttx.py -t "OS/2" sarasa-mono-tc-regular-nerd-font.ttf
       - run: ls -al
