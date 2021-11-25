@@ -21,9 +21,9 @@ jobs:
       - run: cat sarasa-mono-tc-regular.ttx
       - run: cat sarasa-mono-tc-regular-nerd-font.ttx
       - run: |
-          origin_xAvgCharWidth="$(grep xAvgCharWidth sarasa-mono-tc-regular.ttx | cut -d '"' -f 2)"
-          echo origin xAvgCharWidth is $origin_xAvgCharWidth
-          sed -i "s/xAvgCharWidth\ value=\"[0-9]\+\"/xAvgCharWidth\ value=\"${origin_width}\"/g" sarasa-mono-tc-regular-nerd-font.ttx
+          origin_x_avg_char_width="$(grep xAvgCharWidth sarasa-mono-tc-regular.ttx | cut -d '"' -f 2)"
+          echo origin xAvgCharWidth is $origin_x_avg_char_width
+          sed -i "s/xAvgCharWidth\ value=\"[0-9]\+\"/xAvgCharWidth\ value=\"${origin_x_avg_char_width}\"/g" sarasa-mono-tc-regular-nerd-font.ttx
       - run: cat sarasa-mono-tc-regular-nerd-font.ttx
       - run: mv sarasa-mono-tc-regular-nerd-font.ttf sarasa-mono-tc-regular-nerd-font.origin.ttf
       - run: ttx -o sarasa-mono-tc-regular-nerd-font.ttf -m sarasa-mono-tc-regular-nerd-font.origin.ttf sarasa-mono-tc-regular-nerd-font.ttx
